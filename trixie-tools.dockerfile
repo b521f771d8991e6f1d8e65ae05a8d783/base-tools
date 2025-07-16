@@ -35,8 +35,8 @@ RUN rustup target install x86_64-unknown-linux-musl wasm32-unknown-unknown aarch
 
 FROM ${TOOLS_BASE} AS tools
 
-RUN apt install -y clang clang-format clang-tidy clangd clang-tools gdb lldb
-#    swiftlang swiftlang-dev swiftlang-doc swift-doc
+RUN apt install -y clang clang-format clang-tidy clangd clang-tools gdb lldb \
+    swiftlang swiftlang-dev swiftlang-doc swift-doc
 
 FROM ${TOOLS_STATIC_BASE} AS tools-static
 
