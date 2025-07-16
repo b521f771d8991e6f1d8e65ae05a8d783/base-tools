@@ -5,6 +5,10 @@ ARG STATIC_SDK_VERSION=0.0.1
 
 FROM docker.io/swift:${SWIFT_VERSION}-${DEBIAN_VERSION}
 
+ARG SWIFT_VERSION
+ARG SWIFT_CHECKSUM
+ARG STATIC_SDK_VERSION
+
 ENV PATH="$PATH:/root/.nix-profile/bin:/root/.cargo/bin" CC=gcc CXX=g++ OBJC=gcc OBJCXX=g++ ANDROID_HOME=/usr/lib/android-sdk
 
 RUN swift sdk install https://download.swift.org/swift-${SWIFT_VERSION}-release/static-sdk/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE_static-linux-${STATIC_SDK_VERSION}.artifactbundle.tar.gz --checksum ${SWIFT_CHECKSUM}
