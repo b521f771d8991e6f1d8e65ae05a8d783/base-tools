@@ -78,8 +78,8 @@ jobs:
           context: .
           file: ./bookworm-tools.dockerfile
           push: ${{ github.event_name != 'pull_request' }}
-          tags: bookworm-tools-${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: bookworm-tools-${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
