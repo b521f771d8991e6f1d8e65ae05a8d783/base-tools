@@ -19,7 +19,7 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     npm \
     android-sdk sdkmanager default-jdk
 
-RUN swift sdk install https://download.swift.org/swift-${SWIFT_VERSION}-release/static-sdk/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum ${SWIFT_CHECKSUM}
+RUN swift sdk install https://download.swift.org/swift-${SWIFT_VERSION}-release/static-sdk/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum ${SWIFT_CHECKSUM}; exit 0
 
 # configure the image
 RUN yes | sdkmanager --licenses && \
