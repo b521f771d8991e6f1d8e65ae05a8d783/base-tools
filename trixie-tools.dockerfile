@@ -19,6 +19,8 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     npm \
     android-sdk sdkmanager default-jdk
 
+RUN swift sdk install https://download.swift.org/swift-${SWIFT_VERSION}-release/static-sdk/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum ${SWIFT_CHECKSUM}
+
 # configure the image
 RUN yes | sdkmanager --licenses && \
     mkdir -p ~/.config/nix && \
@@ -29,4 +31,3 @@ RUN yes | sdkmanager --licenses && \
 RUN rustup default stable
 RUN rustup target install x86_64-unknown-linux-musl wasm32-unknown-unknown aarch64-unknown-linux-musl
 RUN cargo install bacon wasm-pack wasm-bindgen-cli
-RUN swift sdk install https://download.swift.org/swift-${SWIFT_VERSION}-release/static-sdk/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum ${SWIFT_CHECKSUM}
