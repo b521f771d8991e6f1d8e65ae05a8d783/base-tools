@@ -23,7 +23,7 @@ env:
 
 
 jobs:
-  build-intel:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
