@@ -7,10 +7,9 @@ name: trixie-tools
 
 on:
   schedule:
-    - cron: '17 6 * * *'
+    - cron: '0 0 * * 1'
   push:
     branches: [ "main" ]
-    # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "main" ]
