@@ -11,7 +11,7 @@ ARG STATIC_SDK_VERSION
 
 ENV PATH="$PATH:/root/.nix-profile/bin:/root/.cargo/bin" CC=gcc CXX=g++ OBJC=gcc OBJCXX=g++ ANDROID_HOME=/usr/lib/android-sdk
 
-RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zsh zip git  \
+RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zsh zip git jq \
     make cmake ninja-build \
     build-essential musl-tools gdb gcc g++ gobjc gobjc++ gnustep-devel clang clang-format clang-tidy clangd clang-tools gdb lldb \
     swiftlang swiftlang-dev swiftlang-doc swift-doc \
