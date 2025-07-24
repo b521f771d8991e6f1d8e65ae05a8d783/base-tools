@@ -17,9 +17,15 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     make cmake ninja-build \
     build-essential gdb musl-tools clang clang-format clang-tidy clangd clang-tools gdb lldb \
     emscripten emscripten-doc \
-    cargo rustc rust-all \
     npm \
     android-sdk sdkmanager default-jdk
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+RUN rustup default stable
+RUN rustup target install x86_64-unknown-linux-musl wasm32-unknown-unknown aarch64-unknown-linux-musl
+RUN cargo install cargo-binstall
+RUN cargo binstall bacon wasm-pack wasm-bindgen-cli
 
 # configure the image
 RUN yes | sdkmanager --licenses && \
