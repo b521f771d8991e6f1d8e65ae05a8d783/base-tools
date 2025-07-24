@@ -14,12 +14,14 @@ ENV PATH="$PATH:/root/.nix-profile/bin:/root/.cargo/bin" CC=gcc CXX=g++ OBJC=gcc
 RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zsh zip git jq \
     make cmake ninja-build \
     build-essential musl-tools gdb gcc g++ gobjc gobjc++ gnustep-devel clang clang-format clang-tidy clangd clang-tools gdb lldb \
+    emscripten emscripten-doc \
     swiftlang swiftlang-dev swiftlang-doc swift-doc \
     rustup \
     npm \
-    android-sdk sdkmanager default-jdk
+    android-sdk sdkmanager default-jdk maven gradle
 
 RUN swift sdk install https://download.swift.org/swift-${SWIFT_VERSION}-release/static-sdk/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum ${SWIFT_CHECKSUM}; exit 0
+# TODO add wasm sdk
 
 # configure the image
 RUN yes | sdkmanager --licenses && \
