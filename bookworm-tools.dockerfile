@@ -16,6 +16,7 @@ RUN swift sdk install https://download.swift.org/swift-${SWIFT_VERSION}-release/
 RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zsh zip git  \
     make cmake ninja-build \
     build-essential gdb musl-tools clang clang-format clang-tidy clangd clang-tools gdb lldb \
+    emscripten emscripten-doc \
     cargo rustc rust-all \
     npm \
     android-sdk sdkmanager default-jdk
