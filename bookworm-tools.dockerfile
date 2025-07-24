@@ -20,7 +20,7 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     npm \
     android-sdk sdkmanager default-jdk
 
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 RUN rustup default stable
 RUN rustup target install x86_64-unknown-linux-musl wasm32-unknown-unknown aarch64-unknown-linux-musl
