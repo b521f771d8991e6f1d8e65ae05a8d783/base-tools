@@ -1,6 +1,6 @@
 ARG DEBIAN_VERSION=trixie
-ARG SWIFT_VERSION=6.0.3
-ARG SWIFT_CHECKSUM=67f765e0030e661a7450f7e4877cfe008db4f57f177d5a08a6e26fd661cdd0bd
+ARG SWIFT_VERSION=6.1.2
+ARG SWIFT_CHECKSUM=df0b40b9b582598e7e3d70c82ab503fd6fbfdff71fd17e7f1ab37115a0665b3b
 ARG STATIC_SDK_VERSION=0.0.1
 
 FROM docker.io/debian:${DEBIAN_VERSION}
@@ -16,13 +16,17 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     build-essential musl-tools gdb gcc g++ gobjc gobjc++ gnustep-devel gdb \
     clang clang-format clang-tidy clangd clang-tools lldb \
     emscripten emscripten-doc wasmedge \
-    swiftlang swiftlang-dev swiftlang-doc swift-doc \
     rustup \
     npm \
     android-sdk sdkmanager default-jdk maven gradle
 
+RUN curl -O https://download.swift.org/swiftly/linux/swiftly-$(uname -m).tar.gz && \
+    tar zxf swiftly-$(uname -m).tar.gz && \
+    ./swiftly init --quiet-shell-followup -y --platform debian12 && \
+    . "${SWIFTLY_HOME_DIR:-$HOME/.local/share/swiftly}/env.sh" && \
+    hash -r
 RUN swift sdk install https://download.swift.org/swift-${SWIFT_VERSION}-release/static-sdk/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum ${SWIFT_CHECKSUM}; exit 0
-# TODO add wasm sdk
+RUN swift sdk install https://download.swift.org/swift-6.2-branch/wasm-sdk/swift-6.2-DEVELOPMENT-SNAPSHOT-2025-07-26-a/swift-6.2-DEVELOPMENT-SNAPSHOT-2025-07-26-a_wasm.artifactbundle.tar.gz --checksum 2ff6242bb1396ed19f935ea5a3e169543baf401f9a6a6386cf59dab6fdf0d814
 
 # configure the image
 RUN yes | sdkmanager --licenses && \
