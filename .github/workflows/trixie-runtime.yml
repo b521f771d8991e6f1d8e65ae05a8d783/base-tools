@@ -8,11 +8,6 @@ name: trixie-runtime
 on:
   schedule:
     - cron: '0 0 * * 1'
-  push:
-    branches: [ "main" ]
-    tags: [ 'v*.*.*' ]
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch:
 
 env:
