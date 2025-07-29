@@ -29,8 +29,8 @@ RUN curl -O https://download.swift.org/swiftly/linux/swiftly-$(uname -m).tar.gz 
     . "${SWIFTLY_HOME_DIR:-$HOME/.local/share/swiftly}/env.sh" && \
     hash -r
 RUN swiftly install ${SWIFT_VERSION}
-RUN swift sdk install https://download.swift.org/swift-${SWIFT_VERSION}-release/static-sdk/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum ${SWIFT_STATIC_SDK_CHECKSUM}; exit 0
-RUN swift sdk install https://download.swift.org/swift-6.2-branch/wasm-sdk/swift-6.2-DEVELOPMENT-SNAPSHOT-2025-07-26-a/swift-6.2-DEVELOPMENT-SNAPSHOT-2025-07-26-a_wasm.artifactbundle.tar.gz --checksum ${SWIFT_WASM_SDK_CHECKSUM}
+RUN swift sdk install https://download.swift.org/swift-${SWIFT_VERSION}-release/static-sdk/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz --checksum ${SWIFT_STATIC_SDK_CHECKSUM}
+#RUN swift sdk install https://download.swift.org/swift-6.2-branch/wasm-sdk/swift-6.2-DEVELOPMENT-SNAPSHOT-2025-07-26-a/swift-6.2-DEVELOPMENT-SNAPSHOT-2025-07-26-a_wasm.artifactbundle.tar.gz --checksum ${SWIFT_WASM_SDK_CHECKSUM}
 
 # configure the image
 RUN yes | sdkmanager --licenses && \
@@ -40,6 +40,6 @@ RUN yes | sdkmanager --licenses && \
 
 # set up rust and dependencies not available via apt
 RUN rustup default stable
-RUN rustup target install x86_64-unknown-linux-musl wasm32-unknown-unknown aarch64-unknown-linux-musl
+RUN rustup target install x86_64-unknown-linux-musl aarch64-unknown-linux-musl x86_64-unknown-linux-gnu aarch64-unknown-linux-gnu wasm32-unknown-unknown
 RUN cargo install cargo-binstall
 RUN cargo binstall bacon wasm-pack wasm-bindgen-cli
