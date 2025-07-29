@@ -22,7 +22,7 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     rustup \
     npm \
     android-sdk sdkmanager default-jdk maven gradle \
-    nginx
+    lighttpd
 
 RUN curl -O https://download.swift.org/swiftly/linux/swiftly-$(uname -m).tar.gz && \
     tar zxf swiftly-$(uname -m).tar.gz && \
