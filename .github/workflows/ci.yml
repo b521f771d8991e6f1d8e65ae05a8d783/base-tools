@@ -12,7 +12,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ inputs.image_name }}
   FULL_IMAGE_PATH: ${{ github.repository }}/${{ inputs.image_name }}
-  REGISTRY_IMAGE: ghcr.io/${{ github.repository }}/alpine-tools/${{ inputs.image_name }}
+  REGISTRY_IMAGE: ghcr.io/${{ github.repository }}/base-tools/${{ inputs.image_name }}
 
 jobs:
   build:
