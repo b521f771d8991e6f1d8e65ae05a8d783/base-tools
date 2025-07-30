@@ -12,6 +12,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ inputs.image_name }}
   FULL_IMAGE_PATH: ${{ github.repository }}/${{ inputs.image_name }}
+  REGISTRY_IMAGE: ghcr.io/${{ github.repository }}/${{ inputs.image_name }}
 
 jobs:
   build:
@@ -71,7 +72,7 @@ jobs:
           file: ./${{ env.IMAGE_NAME }}.dockerfile
           context: .
           labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ env.REGISTRY }}/base-tools
+          tags: ${{ env.REGISTRY_IMAGE }}
           outputs: type=image,push-by-digest=true,name-canonical=true,push=true
           cache-from: type=gha
           cache-to: type=gha,mode=max
