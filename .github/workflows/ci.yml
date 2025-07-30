@@ -71,7 +71,7 @@ jobs:
           file: ./${{ env.IMAGE_NAME }}.dockerfile
           context: .
           labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ env.FULL_IMAGE_PATH }}
+          tags: ${{ env.REGISTRY }}/base-tools
           outputs: type=image,push-by-digest=true,name-canonical=true,push=true
           cache-from: type=gha
           cache-to: type=gha,mode=max
