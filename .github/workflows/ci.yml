@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: base-tools/${{ inputs.image_name }}
+  IMAGE_NAME: ${{ inputs.image_name }}
   FULL_IMAGE_PATH: ${{ github.repository }}/${{ inputs.image_name }}
 
 jobs:
@@ -71,7 +71,7 @@ jobs:
           file: ./${{ env.IMAGE_NAME }}.dockerfile
           context: .
           labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: ${{ env.FULL_IMAGE_PATH }}
           outputs: type=image,push-by-digest=true,name-canonical=true,push=true
           cache-from: type=gha
           cache-to: type=gha,mode=max
