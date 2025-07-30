@@ -17,6 +17,7 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
 
 # set up rust and dependencies not available via apt
 RUN rustup default stable
+# this is only to support legacy users, future versions wont have cross-compilation targets
 RUN rustup target install x86_64-unknown-linux-musl aarch64-unknown-linux-musl x86_64-unknown-linux-gnu aarch64-unknown-linux-gnu wasm32-unknown-unknown
 RUN cargo install cargo-binstall
 RUN cargo binstall bacon wasm-pack wasm-bindgen-cli
