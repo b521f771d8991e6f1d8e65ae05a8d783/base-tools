@@ -2,11 +2,11 @@
   description = "A Nix Flake with global packages for development environments";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Adjust the branch as needed
+    nixpkgs.url = "github:NixOS/nixpkgs"; # Adjust the branch as needed
   };
 
   outputs = { self, nixpkgs }: let
-    pkgs = import nixpkgs { inherit system; };
+    pkgs = nixpks;
     lib = pkgs.lib;
     stdenv = pkgs.stdenv;
 
@@ -18,14 +18,16 @@
       nodejs # typescript toolchain
     ] ++ lib.optionals stdenv.isLinux [ gcc gnustep-base gnustep-gui gnustep-make gnustep-libobjc ]
       ++ lib.optionals stdenv.isDarwin [ libcxx apple-sdk ];
+
+    myTool = pkgs.callPackage ./my-tool.nix {}; # Example of a custom tool
   in {
     packages = {
       default = pkgs.mkShell {
         buildInputs = globalPackages;
       };
+      myTool = myTool; # Expose the custom tool
     };
 
-    # Exporting the globalPackages variable
     globalPackages = globalPackages;
   };
 }
