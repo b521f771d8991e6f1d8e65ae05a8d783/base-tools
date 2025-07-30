@@ -2,19 +2,22 @@ name: ci
 
 on:
   workflow_dispatch:
+      inputs:
+        image_name:
+          description: 'Image name'
+          required: true
+          default: 'alpine-tools'
 
 env:
-  REGISTRY_IMAGE: ghcr.io/${{ github.repository }}/alpine-tools
-   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}/alpine-tools
+  IMAGE_NAME: ${{ inputs.image_name }}
+  FULL_IMAGE_PATH: ${{ github.repository }}/${{ inputs.image_name }}
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         os:
           - ubuntu-24.04
@@ -65,10 +68,10 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
-          file: ./alpine-tools.dockerfile
+          file: ./${{ env.IMAGE_NAME }}.dockerfile
           context: .
           labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ env.REGISTRY_IMAGE }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           outputs: type=image,push-by-digest=true,name-canonical=true,push=true
           cache-from: type=gha
           cache-to: type=gha,mode=max
