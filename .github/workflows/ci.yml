@@ -11,8 +11,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ inputs.image_name }}
-  FULL_IMAGE_PATH: ${{ github.repository }}/${{ inputs.image_name }}
-  REGISTRY_IMAGE: ghcr.io/${{ FULL_IMAGE_PATH }}
+  REGISTRY_IMAGE: ghcr.io/${{ inputs.image_name }}
 
 jobs:
   build:
@@ -63,7 +62,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY_IMAGE }}
 
       - name: Build and push by digest
         id: build
