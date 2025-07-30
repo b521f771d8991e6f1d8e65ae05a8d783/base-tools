@@ -14,11 +14,12 @@ jobs:
   build:
     strategy:
       fail-fast: false
+      runs-on: ubuntu-latest
       matrix:
         platform:
           - linux/amd64
           - linux/arm64
-        runs-on:
+        os:
           - ubuntu-24.04
           - ubuntu-22.04-arm64
     permissions:
