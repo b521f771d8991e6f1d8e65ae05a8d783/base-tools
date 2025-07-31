@@ -18,14 +18,11 @@
       nodejs # typescript toolchain
     ] ++ lib.optionals stdenv.isLinux [ gcc gnustep-base gnustep-gui gnustep-make gnustep-libobjc ]
       ++ lib.optionals stdenv.isDarwin [ libcxx apple-sdk ];
-
-    myTool = pkgs.callPackage ./my-tool.nix {}; # Example of a custom tool
   in {
     packages = {
       default = pkgs.mkShell {
         buildInputs = globalPackages;
       };
-      myTool = myTool; # Expose the custom tool
     };
 
     globalPackages = globalPackages;
