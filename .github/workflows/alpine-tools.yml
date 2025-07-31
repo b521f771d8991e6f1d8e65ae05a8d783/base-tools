@@ -6,7 +6,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  call-parse-version-from-pom:
+ build:
+    permissions:
+        contents: read
+        packages: write
+        # This is used to complete the identity challenge
+        # with sigstore/fulcio when running outside of PRs.
+        id-token: write
     uses: b521f771d8991e6f1d8e65ae05a8d783/base-tools/.github/workflows/ci.yml@main
     with:
       image_name: "alpine-tools"
