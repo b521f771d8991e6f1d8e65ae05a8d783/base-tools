@@ -1,12 +1,12 @@
 name: ci
 
 on:
-  workflow_dispatch:
+  workflow_call:
       inputs:
         image_name:
+          type: string
           description: 'Image name'
           required: true
-          default: 'alpine-tools'
 
 env:
   REGISTRY: ghcr.io
