@@ -1,4 +1,4 @@
-name: alpine-tools
+name: build-images
 
 on:
   schedule:
@@ -6,13 +6,28 @@ on:
   workflow_dispatch:
 
 jobs:
- build:
+  build:
     permissions:
-        contents: read
-        packages: write
-        # This is used to complete the identity challenge
-        # with sigstore/fulcio when running outside of PRs.
-        id-token: write
-    uses: b521f771d8991e6f1d8e65ae05a8d783/base-tools/.github/workflows/ci.yml@main
-    with:
-      image_name: "alpine-tools"
+      contents: read
+      packages: write
+      id-token: write
+
+    strategy:
+      matrix:
+        image_name: 
+          - alpine-tools
+          - trixie-tools
+          - trixie-tools-runtime
+          - bookworm-tools
+          - bookworm-tools-runtime
+
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run CI with specified image
+        uses: b521f771d8991e6f1d8e65ae05a8d783/base-tools/.github/workflows/ci.yml@main
+        with:
+          image_name: ${{ matrix.image_name }}
