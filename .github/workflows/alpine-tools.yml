@@ -20,14 +20,7 @@ jobs:
           - trixie-tools-runtime
           - bookworm-tools
           - bookworm-tools-runtime
-
-    runs-on: ubuntu-24.04
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run CI with specified image
-        uses: b521f771d8991e6f1d8e65ae05a8d783/base-tools/.github/workflows/ci.yml@main
-        with:
-          image_name: ${{ matrix.image_name }}
+          
+    uses: b521f771d8991e6f1d8e65ae05a8d783/base-tools/.github/workflows/ci.yml@main
+    with:
+      image_name: ${{ matrix.image_name }}
