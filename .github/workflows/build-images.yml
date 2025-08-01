@@ -16,8 +16,8 @@ jobs:
       matrix:
         image_name: 
           #- alpine-tools
-          - trixie-tools
-          #- trixie-tools-runtime
+          #- trixie-tools
+          - trixie-tools-runtime
           #- bookworm-tools
           #- bookworm-tools-runtime
           
