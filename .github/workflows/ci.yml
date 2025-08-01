@@ -84,15 +84,15 @@ jobs:
 
       - name: Export digest
         run: |
-          mkdir -p ${{ runner.temp }}/digests
+          mkdir -p ${{ runner.temp }}/digests/${{ env.IMAGE_NAME }}
           digest="${{ steps.build.outputs.digest }}"
-          touch "${{ runner.temp }}/digests/${digest#sha256:}"
+          touch "${{ runner.temp }}/digests/${{ env.IMAGE_NAME }}/${digest#sha256:}"
 
       - name: Upload digest
         uses: actions/upload-artifact@v4
         with:
           name: digests-${{ env.ARCH }}
-          path: ${{ runner.temp }}/digests/*
+          path: ${{ runner.temp }}/digests/${{ env.IMAGE_NAME }}/*
           if-no-files-found: error
           retention-days: 1
           overwrite: true
@@ -108,7 +108,7 @@ jobs:
       - name: Download digests
         uses: actions/download-artifact@v4
         with:
-          path: ${{ runner.temp }}/digests
+          path: ${{ runner.temp }}/digests/${{ env.IMAGE_NAME }}
           pattern: digests-*
           merge-multiple: true
           
@@ -129,7 +129,7 @@ jobs:
           images: ${{ env.REGISTRY_IMAGE }}
 
       - name: Create manifest list and push
-        working-directory: ${{ runner.temp }}/digests
+        working-directory: ${{ runner.temp }}/digests/${{ env.IMAGE_NAME }}
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
             $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
