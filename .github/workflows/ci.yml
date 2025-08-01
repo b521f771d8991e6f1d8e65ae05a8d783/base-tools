@@ -75,6 +75,7 @@ jobs:
           tags: ${{ env.REGISTRY_IMAGE }}
           outputs: type=image,push-by-digest=true,name-canonical=true,push=true
           cache-from: type=gha
+          platform: linux/${{ uname -m }}
           cache-to: type=gha,mode=max
           push: false
 
@@ -84,14 +85,10 @@ jobs:
           digest="${{ steps.build.outputs.digest }}"
           touch "${{ runner.temp }}/digests/${digest#sha256:}"
 
-      - name: Get architecture
-        id: get_arch
-        run: echo "ARCH=$(uname -m)" >> $GITHUB_ENV
-
       - name: Upload digest
         uses: actions/upload-artifact@v4
         with:
-          name: digests-${{ env.ARCH }}
+          name: digests-${{ uname -m }}
           path: ${{ runner.temp }}/digests/*
           if-no-files-found: error
           retention-days: 1
