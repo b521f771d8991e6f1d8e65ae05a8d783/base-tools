@@ -64,6 +64,10 @@ jobs:
         uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
         with:
           images: ${{ env.REGISTRY_IMAGE }}
+          
+      - name: Get architecture
+        id: get_arch
+        run: echo "ARCH=$(uname -m)" >> $GITHUB_ENV
 
       - name: Build and push by digest
         id: build
@@ -75,7 +79,7 @@ jobs:
           tags: ${{ env.REGISTRY_IMAGE }}
           outputs: type=image,push-by-digest=true,name-canonical=true,push=true
           cache-from: type=gha
-          platform: linux/${{ uname -m }}
+          platform: linux/${{ env.ARCH }}
           cache-to: type=gha,mode=max
           push: false
 
@@ -88,7 +92,7 @@ jobs:
       - name: Upload digest
         uses: actions/upload-artifact@v4
         with:
-          name: digests-${{ uname -m }}
+          name: digests-${{ env.ARCH }}
           path: ${{ runner.temp }}/digests/*
           if-no-files-found: error
           retention-days: 1
