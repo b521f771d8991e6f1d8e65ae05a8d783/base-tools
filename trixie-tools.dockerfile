@@ -9,7 +9,7 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     build-essential musl-tools gdb gcc g++ gobjc gobjc++ gnustep-devel gdb \
     clang clang-format clang-tidy clangd clang-tools lldb \
     swiftlang swiftlang-dev swiftlang-doc \
-    emscripten emscripten-doc \
+    emscripten emscripten-doc wasmedge \
     rustup \
     npm \
     android-sdk sdkmanager default-jdk maven gradle \
