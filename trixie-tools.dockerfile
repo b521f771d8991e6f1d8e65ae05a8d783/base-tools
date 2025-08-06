@@ -4,7 +4,7 @@ FROM docker.io/debian:${DEBIAN_VERSION}
 
 ENV PATH="$PATH:/root/.nix-profile/bin:/root/.cargo/bin" CC=gcc CXX=g++ OBJC=gcc OBJCXX=g++ ANDROID_HOME=/usr/lib/android-sdk
 
-RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zsh zip git jq \
+RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zsh zip git jq pkg-config \
     make cmake ninja-build \
     build-essential musl-tools gdb gcc g++ gobjc gobjc++ gnustep-devel gdb \
     clang clang-format clang-tidy clangd clang-tools lldb \
