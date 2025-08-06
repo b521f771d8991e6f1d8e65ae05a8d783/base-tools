@@ -61,6 +61,7 @@
               gnustep-make
               gnustep-libobjc
               dpkg
+              pkg-config
             ]
             ++ lib.optionals stdenv.isDarwin [
               libcxx
