@@ -21,6 +21,13 @@ RUN rustup target install x86_64-unknown-linux-musl aarch64-unknown-linux-musl x
 RUN cargo install cargo-binstall
 RUN cargo binstall bacon wasm-pack wasm-bindgen-cli
 
+WORKDIR /tmp
+RUN SWIFT_VERSION=$(swift --version | grep -oP '\d+\.\d+\.\d+' | head -n 1) && wget -O static-sdk.artifactbundle.tar.gz https://download.swift.org/swift-${SWIFT_VERSION}-release/static-sdk/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz
+RUN swift sdk install ./static-sdk.artifactbundle.tar.gz --checksum $(swift package compute-checksum ./static-sdk.artifactbundle.tar.gz) 
+RUN rm ./static-sdk.artifactbundle.tar.gz
+
+WORKDIR /
+
 # configure the image
 RUN yes | sdkmanager --licenses && \
     mkdir -p ~/.config/nix && \
