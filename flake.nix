@@ -79,7 +79,6 @@
               pkg-config
               clang
               clang-tools
-              gcc # use GCC on Linux
             ]
             ++ lib.optionals stdenv.isDarwin [
               libcxx
