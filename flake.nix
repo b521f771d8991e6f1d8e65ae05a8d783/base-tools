@@ -69,7 +69,6 @@
               nodejs
             ]
             ++ lib.optionals stdenv.isLinux [
-              gcc
               gnustep-base
               gnustep-gui
               gnustep-make
