@@ -1,4 +1,4 @@
-# provides a build environent for Debian Linux, Static Linux and WASM
+# provides a build environent for Debian Linux, Static Linux, Windows and WASM (we use Linux do build Windows binaries so that we can stay on free software)
 FROM docker.io/debian:trixie
 
 ENV PATH="$PATH:/root/.nix-profile/bin:/root/.cargo/bin" CC=gcc CXX=g++ OBJC=gcc OBJCXX=g++ ANDROID_HOME=/usr/lib/android-sdk
@@ -12,7 +12,8 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     rustup \
     npm \
     android-sdk sdkmanager default-jdk maven gradle \
-    lighttpd
+    lighttpd \
+    wine
 
 # set up rust and dependencies not available via apt
 RUN rustup default stable
