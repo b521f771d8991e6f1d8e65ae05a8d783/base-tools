@@ -12,8 +12,7 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     rustup \
     npm \
     android-sdk sdkmanager default-jdk maven gradle \
-    lighttpd \
-    wine
+    lighttpd 
 
 # set up rust and dependencies not available via apt
 RUN rustup default stable
