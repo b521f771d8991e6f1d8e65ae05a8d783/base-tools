@@ -109,7 +109,11 @@
                 " -isystem${pkgs.gnustep-gui}/include -isystem${pkgs.gnustep-base.dev}/include -isystem${pkgs.gnustep-libobjc}/include"
               else
                 "";
-            OBJCXXFLAGS = self.OBJCFLAGS;
+            OBJCXXFLAGS =
+              if pkgs.stdenv.isLinux then
+                " -isystem${pkgs.gnustep-gui}/include -isystem${pkgs.gnustep-base.dev}/include -isystem${pkgs.gnustep-libobjc}/include"
+              else
+                "";
             LDFLAGS =
               if pkgs.stdenv.isLinux then
                 "-L${pkgs.gnustep-gui}/lib -L${pkgs.gnustep-base.lib}/lib -L${pkgs.gnustep-libobjc}/lib -lgnustep-gui -lgnustep-base -lobjc -lm"
