@@ -16,6 +16,7 @@
       self,
       nixpkgs,
       flake-utils,
+      rust-overlay
     }:
     flake-utils.lib.eachSystem
       [
@@ -38,7 +39,9 @@
            rustToolchain = pkgs.rust-bin.stable.latest.default.override {
             extensions = [ "rust-src" ];
             targets = [
-              "x86_64-unknown-linux-musl" "aarch64-unknown-linux-musl" "wasm32-unknown-unknown"
+              "x86_64-apple-darwin" "aarch64-apple-darwin"
+              "x86_64-unknown-linux-musl" "aarch64-unknown-linux-musl" "x86_64-unknown-linux-gnu" "aarch64-unknown-linux-gnu"
+              "wasm32-unknown-unknown"
             ];
           };
 
@@ -56,10 +59,8 @@
               rpm
               ninja
               jq # tools
-              clang
-              clang-tools
               lld # (Objective) C/++ toolchain
-              rustToolchain 
+              rustToolchain
               wasm-pack
               wasm-bindgen-cli
               bacon
@@ -75,6 +76,8 @@
               gnustep-libobjc
               dpkg
               pkg-config
+              clang
+              clang-tools
             ]
             ++ lib.optionals stdenv.isDarwin [
               libcxx
