@@ -16,7 +16,7 @@
       self,
       nixpkgs,
       flake-utils,
-      rust-overlay
+      rust-overlay,
     }:
     flake-utils.lib.eachSystem
       [
@@ -36,16 +36,20 @@
 
           lib = pkgs.lib;
 
-           rustToolchain = pkgs.rust-bin.stable.latest.default.override {
+          rustToolchain = pkgs.rust-bin.stable.latest.default.override {
             extensions = [ "rust-src" ];
             targets = [
-              "x86_64-apple-darwin" "aarch64-apple-darwin"
-              "x86_64-unknown-linux-musl" "aarch64-unknown-linux-musl" "x86_64-unknown-linux-gnu" "aarch64-unknown-linux-gnu"
+              "x86_64-apple-darwin"
+              "aarch64-apple-darwin"
+              "x86_64-unknown-linux-musl"
+              "aarch64-unknown-linux-musl"
+              "x86_64-unknown-linux-gnu"
+              "aarch64-unknown-linux-gnu"
               "wasm32-unknown-unknown"
             ];
           };
 
-          stdenv = pkgs.stdenv;
+          stdenv = pkgs.clangStdenv;
 
           global-packages =
             with pkgs;
