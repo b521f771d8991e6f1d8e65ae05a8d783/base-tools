@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -25,8 +30,17 @@
           pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = false;
+            overlays = [ rust-overlay.overlays.default ];
           };
+
           lib = pkgs.lib;
+
+           rustToolchain = pkgs.rust-bin.stable.latest.default.override {
+            extensions = [ "rust-src" ];
+            targets = [
+              "x86_64-unknown-linux-musl" "aarch64-unknown-linux-musl" "wasm32-unknown-unknown"
+            ];
+          };
 
           stdenv = pkgs.stdenv;
 
@@ -45,14 +59,13 @@
               clang
               clang-tools
               lld # (Objective) C/++ toolchain
-              rustc
-              cargo
+              rustToolchain 
               wasm-pack
               wasm-bindgen-cli
-              bacon # rust toolchain
+              bacon
               swift
-              swiftpm # swift toolchain
-              nodejs # typescript toolchain
+              swiftpm
+              nodejs
             ]
             ++ lib.optionals stdenv.isLinux [
               gcc
