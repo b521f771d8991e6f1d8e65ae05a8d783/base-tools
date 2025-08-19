@@ -1,7 +1,5 @@
 # provides a build environent for Debian Linux, Static Linux and WASM
-ARG DEBIAN_VERSION=trixie
-
-FROM docker.io/debian:${DEBIAN_VERSION}
+FROM docker.io/debian:trixie
 
 ENV PATH="$PATH:/root/.nix-profile/bin:/root/.cargo/bin" CC=gcc CXX=g++ OBJC=gcc OBJCXX=g++ ANDROID_HOME=/usr/lib/android-sdk
 
