@@ -1,3 +1,4 @@
+# provides a build environent for Debian Linux, Static Linux and WASM
 ARG DEBIAN_VERSION=trixie
 
 FROM docker.io/debian:${DEBIAN_VERSION}
