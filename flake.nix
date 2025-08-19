@@ -49,8 +49,6 @@
             ];
           };
 
-          stdenv = pkgs.clangStdenv;
-
           global-packages =
             with pkgs;
             [
@@ -72,7 +70,7 @@
               swiftpm
               nodejs
             ]
-            ++ lib.optionals stdenv.isLinux [
+            ++ lib.optionals pkgs.stdenv.isLinux [
               gnustep-base
               gnustep-gui
               gnustep-make
@@ -81,10 +79,11 @@
               pkg-config
               clang
               clang-tools
+              gcc # use GCC on Linux
             ]
             ++ lib.optionals stdenv.isDarwin [
               libcxx
-              apple-sdk
+              apple-sdk # clang is included here
             ];
         in
         {
@@ -96,6 +95,29 @@
 
           global-packages = global-packages;
           formatter = pkgs.nixfmt-tree;
+
+          environment = {
+            VARIANT = "release";
+
+            CC = if pkgs.stdenv.isDarwin then "${pkgs.clang}/bin/clang" else "${pkgs.gcc}/bin/gcc";
+            CXX = if pkgs.stdenv.isDarwin then "${pkgs.clang}/bin/clang++" else "${pkgs.gcc}/bin/g++";
+            OBJC = "${pkgs.clang}/bin/clang";
+            OBJCXX = "${pkgs.clang}/bin/clang++";
+
+            OBJCFLAGS =
+              if pkgs.stdenv.isLinux then
+                " -isystem${pkgs.gnustep-gui}/include -isystem${pkgs.gnustep-base.dev}/include -isystem${pkgs.gnustep-libobjc}/include"
+              else
+                "";
+            OBJCXXFLAGS = backend.OBJCFLAGS;
+            LDFLAGS =
+              if pkgs.stdenv.isLinux then
+                "-L${pkgs.gnustep-gui}/lib -L${pkgs.gnustep-base.lib}/lib -L${pkgs.gnustep-libobjc}/lib -lgnustep-gui -lgnustep-base -lobjc -lm"
+              else
+                "";
+
+            CPLUS_INCLUDE_PATH = if pkgs.stdenv.isDarwin then "${pkgs.libcxx.dev}/include/c++/v1" else "";
+          };
         }
       );
 }
