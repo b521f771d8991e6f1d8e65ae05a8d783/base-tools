@@ -20,8 +20,8 @@ jobs:
       fail-fast: true
       matrix:
         os:
-          - windows-11-arm
-          - windows-11
+          - ubuntu-24.04-arm
+          - ubuntu-24.04
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
