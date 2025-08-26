@@ -134,9 +134,10 @@ jobs:
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
             $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
   
-      - name: Delete all untagged container versions
-        uses: actions/delete-package-versions@v5
-        with:
-          min-versions-to-keep: 2
-          package-name: base-tools/${{ env.IMAGE_NAME }}
-          package-type: 'container'
+     # - name: Delete all untagged container versions
+     #   uses: actions/delete-package-versions@v5
+     #   with:
+     #     min-versions-to-keep: 2
+     #     package-name: base-tools/${{ env.IMAGE_NAME }}
+     #     package-type: 'container'
+     #     delete-only-untagged-versions: true
