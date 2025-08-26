@@ -110,7 +110,7 @@ jobs:
         with:
           delete-only-untagged-versions: 'false'
           min-versions-to-keep: 1
-          package-name: ${{ env.IMAGE_NAME }}
+          package-name: base-tools/${{ env.IMAGE_NAME }}
           package-type: 'container'
     
       - name: Download digests
