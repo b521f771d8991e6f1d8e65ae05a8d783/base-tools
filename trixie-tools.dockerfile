@@ -1,5 +1,6 @@
 # provides a build environent for Debian Linux, Static Linux and WASM
-ARG BASE=docker.io/debian:trixie
+#ARG BASE=docker.io/debian:trixie
+ARG BASE=ghcr.io/b521f771d8991e6f1d8e65ae05a8d783/base-tools/trixie-tools:main
 
 FROM ${BASE}
 
