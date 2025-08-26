@@ -104,7 +104,15 @@ jobs:
     permissions:
           contents: read
           packages: write
-    steps:         
+    steps: 
+      - name: Delete all untagged container versions
+        uses: actions/delete-package-versions@v5
+        with:
+          delete-only-untagged-versions: 'false'
+          min-versions-to-keep: 1
+          package-name: ${{ env.IMAGE_NAME }}
+          package-type: 'container'
+    
       - name: Download digests
         uses: actions/download-artifact@v4
         with:
