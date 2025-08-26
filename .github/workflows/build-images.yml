@@ -17,8 +17,9 @@ jobs:
         image_name: 
           - trixie-tools
           - trixie-tools-runtime
-          - bookworm-tools
-          - bookworm-tools-runtime
+          # legacy images
+          #- bookworm-tools
+          #- bookworm-tools-runtime
       max-parallel: 1
       fail-fast: true
           
