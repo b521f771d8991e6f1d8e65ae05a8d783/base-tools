@@ -9,21 +9,16 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     clang clang-format clang-tidy clangd clang-tools lldb \
     swiftlang swiftlang-dev swiftlang-doc \
     emscripten emscripten-doc wasmedge \
-    rustup \
+    rustup bacon \
     npm \
     android-sdk sdkmanager default-jdk maven gradle \
-    lighttpd 
+    lighttpd
 
 # set up rust and dependencies not available via apt
 RUN rustup default stable
 RUN rustup target install x86_64-unknown-linux-musl aarch64-unknown-linux-musl x86_64-unknown-linux-gnu aarch64-unknown-linux-gnu wasm32-unknown-unknown
 RUN cargo install cargo-binstall
-RUN cargo binstall bacon wasm-pack wasm-bindgen-cli
-
-WORKDIR /tmp
-RUN SWIFT_VERSION=$(swift --version | grep -oP '\d+\.\d+\.\d+' | head -n 1) && wget -O static-sdk.artifactbundle.tar.gz https://download.swift.org/swift-${SWIFT_VERSION}-release/static-sdk/swift-${SWIFT_VERSION}-RELEASE/swift-${SWIFT_VERSION}-RELEASE_static-linux-0.0.1.artifactbundle.tar.gz
-RUN swift sdk install ./static-sdk.artifactbundle.tar.gz --checksum $(swift package compute-checksum ./static-sdk.artifactbundle.tar.gz) 
-RUN rm ./static-sdk.artifactbundle.tar.gz
+RUN cargo binstall wasm-pack wasm-bindgen-cli
 
 WORKDIR /
 
