@@ -14,11 +14,12 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     android-sdk sdkmanager default-jdk maven gradle \
     lighttpd
 
-# set up rust and dependencies not available via apt
+# set up rust
 RUN rustup default stable
 RUN rustup target install x86_64-unknown-linux-musl aarch64-unknown-linux-musl x86_64-unknown-linux-gnu aarch64-unknown-linux-gnu wasm32-unknown-unknown
-RUN cargo install cargo-binstall
-RUN cargo binstall wasm-pack wasm-bindgen-cli
+
+# dependencies not available via apt
+RUN npm install -g wasm-pack
 
 WORKDIR /
 
