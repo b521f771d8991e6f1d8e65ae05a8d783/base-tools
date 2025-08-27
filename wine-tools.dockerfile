@@ -1,3 +1,5 @@
 FROM docker.io/debian:trixie
 
-RUN dpkg --add-architecture i386 && apt update && apt upgrade -y && apt install -y wine
+RUN apt update && apt upgrade -y && apt install -y wine
+
+SHELL ["/usr/bin/wine", "cmd"]
