@@ -1,8 +1,5 @@
 # provides a build environent for Debian Linux, Static Linux and WASM
-#ARG BASE=docker.io/debian:trixie
-ARG BASE=ghcr.io/b521f771d8991e6f1d8e65ae05a8d783/base-tools/trixie-tools:main
-
-FROM ${BASE}
+FROM docker.io/debian:trixie
 
 ENV PATH="$PATH:/root/.nix-profile/bin:/root/.cargo/bin:/usr/local/bin/" CC=gcc CXX=g++ OBJC=gcc OBJCXX=g++ ANDROID_HOME=/usr/lib/android-sdk SOURCE_DATE_EPOCH=0
 
@@ -32,3 +29,6 @@ RUN yes | sdkmanager --licenses && \
     mkdir -p ~/.config/nix && \
     echo 'extra-experimental-features = flakes nix-command' > ~/.config/nix/nix.conf && \
     git config --global --add safe.directory /workspace
+
+FROM scratch
+COPY --from=0 / /
