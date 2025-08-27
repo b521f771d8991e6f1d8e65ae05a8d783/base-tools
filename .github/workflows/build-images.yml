@@ -15,9 +15,10 @@ jobs:
     strategy:
       matrix:
         image_name: 
+          - wine-tools
           - trixie-tools
           - trixie-tools-runtime
-          # legacy images
+          # legacy images, no longer updated
           #- bookworm-tools
           #- bookworm-tools-runtime
       max-parallel: 1
