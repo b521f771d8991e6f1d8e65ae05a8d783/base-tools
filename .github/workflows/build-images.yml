@@ -17,13 +17,14 @@ jobs:
         image_name: 
           - windows-tools
           - alpine-tools
-          - darling-tools
+          - darwin-tools
+          - debian-tools
+          - debian-tools-runtime
+          # legacy images
           - trixie-tools
           - trixie-tools-runtime
           - bookworm-tools
           - bookworm-tools-runtime
-          - debian-tools
-          - debian-tools-runtime
       max-parallel: 1
       fail-fast: true
           
