@@ -17,6 +17,7 @@ jobs:
         image_name: 
           - windows-tools
           - alpine-tools
+          - darling-tools
           - trixie-tools
           - trixie-tools-runtime
           - bookworm-tools
