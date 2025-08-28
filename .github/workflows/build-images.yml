@@ -21,6 +21,8 @@ jobs:
           - trixie-tools-runtime
           - bookworm-tools
           - bookworm-tools-runtime
+          - debian-tools
+          - debian-tools-runtime
       max-parallel: 1
       fail-fast: true
           
