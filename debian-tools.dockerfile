@@ -19,8 +19,7 @@ RUN rustup default stable
 RUN rustup target install x86_64-unknown-linux-musl aarch64-unknown-linux-musl x86_64-unknown-linux-gnu aarch64-unknown-linux-gnu wasm32-unknown-unknown
 
 # dependencies not available via apt
-RUN npm install -g wasm-pack
-RUN cargo install wasm-bindgen-cli
+RUN cargo install wasm-pack wasm-bindgen-cli
 
 WORKDIR /
 
