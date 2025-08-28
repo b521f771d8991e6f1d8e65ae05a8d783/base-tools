@@ -19,8 +19,7 @@ RUN rustup default stable
 RUN rustup target install x86_64-unknown-linux-musl aarch64-unknown-linux-musl x86_64-unknown-linux-gnu aarch64-unknown-linux-gnu wasm32-unknown-unknown
 
 # dependencies not available via apt
-RUN npm install -g wasm-pack
-RUN cargo install wasm-bindgen-cli
+RUN cargo install wasm-pack wasm-bindgen-cli
 
 WORKDIR /
 
@@ -29,6 +28,3 @@ RUN yes | sdkmanager --licenses && \
     mkdir -p ~/.config/nix && \
     echo 'extra-experimental-features = flakes nix-command' > ~/.config/nix/nix.conf && \
     git config --global --add safe.directory /workspace
-
-FROM scratch
-COPY --from=0 / /
