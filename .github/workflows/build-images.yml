@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         image_name: 
-          - wine-tools
+          - windows-tools
           - trixie-tools
           - trixie-tools-runtime
           # legacy images, no longer updated
