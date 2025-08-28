@@ -1,5 +1,6 @@
-FROM docker.io/debian:trixie
+FROM docker.io/alpine:latest
 
-RUN apt update && apt upgrade -y && apt install -y wine
+RUN apk update && apk upgrade && apk add wine
 
 SHELL ["/usr/bin/wine", "cmd"]
+CMD ["/usr/bin/wine", "cmd"]
