@@ -28,6 +28,3 @@ RUN yes | sdkmanager --licenses && \
     mkdir -p ~/.config/nix && \
     echo 'extra-experimental-features = flakes nix-command' > ~/.config/nix/nix.conf && \
     git config --global --add safe.directory /workspace
-
-FROM scratch
-COPY --from=0 / /
