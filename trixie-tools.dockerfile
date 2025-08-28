@@ -1,4 +1,4 @@
-# provides a build environent for Debian Linux, Static Linux and WASM
+# provides a build environent for Debian Linux and WASM
 FROM docker.io/debian:trixie
 
 ENV PATH="$PATH:/root/.nix-profile/bin:/root/.cargo/bin:/usr/local/bin/" CC=gcc CXX=g++ OBJC=gcc OBJCXX=g++ ANDROID_HOME=/usr/lib/android-sdk SOURCE_DATE_EPOCH=0
