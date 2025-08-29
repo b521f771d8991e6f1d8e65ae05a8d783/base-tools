@@ -24,8 +24,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 RUN rustup default stable
 RUN rustup target install x86_64-unknown-linux-musl wasm32-unknown-unknown aarch64-unknown-linux-musl
-RUN cargo install cargo-binstall
-RUN cargo binstall bacon wasm-pack wasm-bindgen-cli
+RUN cargo install bacon wasm-pack wasm-bindgen-cli
 
 # configure the image
 RUN yes | sdkmanager --licenses && \
