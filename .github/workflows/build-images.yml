@@ -15,9 +15,7 @@ jobs:
     strategy:
       matrix:
         image_name: 
-          - windows-tools
           - alpine-tools
-          # - darwin-tools
           - debian-tools
           - debian-tools-runtime
           # legacy images
