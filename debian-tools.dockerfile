@@ -11,8 +11,10 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
     emscripten emscripten-doc wasmedge \
     rustup bacon \
     npm \
+# tools for development
     android-sdk sdkmanager default-jdk maven gradle \
-    lighttpd
+    lighttpd \
+    python3
 
 # set up rust
 RUN rustup default stable
