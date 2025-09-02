@@ -1,4 +1,4 @@
-# Provides a build environment for Static Linux environments - less features that Debian (no swift support, no GNUStep-Support, no support for cross-compiling to -gnu instead of musl)
+# Provides a build environment for Static Linux environments - less features that Debian (no swift support, no emscripten (for compiling to WAsm), no GNUStep-Support, no support for cross-compiling to -gnu instead of musl)
 FROM docker.io/rust:alpine
 
 ENV PATH="$PATH:/root/.nix-profile/bin:/root/.cargo/bin:/usr/local/bin/" \
@@ -9,7 +9,6 @@ RUN apk update && apk upgrade && apk add nix nano curl wget gnupg rpm zsh zip gi
     make cmake ninja \
     build-base alpine-sdk musl-dev gdb gcc g++ gcc-objc \
     clang clang-dev lldb \
-    emsdk \
     npm \
     android-tools openjdk11 maven gradle \
     lighttpd
