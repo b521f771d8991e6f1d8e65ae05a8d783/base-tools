@@ -23,7 +23,7 @@ RUN rustup target install x86_64-unknown-linux-musl aarch64-unknown-linux-musl x
 # dependencies not available via apt
 RUN npm install -g wasm-pack
 # TODO find a better way to privision this
-RUN cargo install wasm-bindgen-cli@0.2.100
+# RUN cargo install wasm-bindgen-cli@0.2.100
 
 WORKDIR /
 
