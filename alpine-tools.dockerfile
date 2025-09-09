@@ -19,7 +19,7 @@ RUN rustup target install wasm32-unknown-unknown
 
 # Install dependencies not available via apk
 RUN npm install -g wasm-pack
-RUN cargo install bacon wasm-bindgen-cli
+RUN cargo install bacon
 
 WORKDIR /
 
