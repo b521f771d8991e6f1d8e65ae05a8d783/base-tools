@@ -19,10 +19,10 @@ jobs:
           - debian-tools
           - debian-tools-runtime
           # legacy images
-          - trixie-tools
-          - trixie-tools-runtime
-          - bookworm-tools
-          - bookworm-tools-runtime
+          #- trixie-tools
+          #- trixie-tools-runtime
+          #- bookworm-tools
+          #- bookworm-tools-runtime
       max-parallel: 1
       fail-fast: true
           
