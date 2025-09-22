@@ -26,7 +26,6 @@ RUN rustup target install x86_64-unknown-linux-musl aarch64-unknown-linux-musl w
 
 # dependencies not available via apt
 RUN npm install -g wasm-pack
-RUN npm config set ignore-scripts true --global
 
 WORKDIR /
 
@@ -34,4 +33,5 @@ WORKDIR /
 RUN yes | sdkmanager --licenses && \
     mkdir -p ~/.config/nix && \
     echo 'extra-experimental-features = flakes nix-command' > ~/.config/nix/nix.conf && \
-    git config --global --add safe.directory /workspace
+    git config --global --add safe.directory /workspace && \
+    npm config set ignore-scripts true --global
