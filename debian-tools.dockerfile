@@ -26,6 +26,7 @@ RUN rustup target install x86_64-unknown-linux-musl aarch64-unknown-linux-musl w
 
 # dependencies not available via apt
 RUN npm install -g wasm-pack
+RUN npm config set ignore-scripts true --global
 
 WORKDIR /
 
