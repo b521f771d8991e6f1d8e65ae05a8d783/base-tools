@@ -16,3 +16,11 @@ RUN apt update && apt upgrade -y && apt-get install -y nix nano curl wget gpg rp
     npm
 
 RUN rustup default stable && rustup target add x86_64-pc-windows-gnu
+
+ENV CMAKE_SYSTEM_NAME="Windows" \
+    CMAKE_SYSTEM_PROCESSOR="x86_64" \
+    CMAKE_RC_COMPILER="x86_64-w64-mingw32-windres" \
+    CMAKE_FIND_ROOT_PATH="/usr/x86_64-w64-mingw32" \
+    CMAKE_FIND_ROOT_PATH_MODE_PROGRAM="NEVER" \
+    CMAKE_FIND_ROOT_PATH_MODE_LIBRARY="ONLY" \
+    CMAKE_FIND_ROOT_PATH_MODE_INCLUDE="ONLY"
