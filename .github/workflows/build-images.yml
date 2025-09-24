@@ -17,6 +17,7 @@ jobs:
         image_name: 
           - debian-tools
           - debian-tools-runtime
+          - windows-tools
           # legacy images
           #- trixie-tools
           #- trixie-tools-runtime
