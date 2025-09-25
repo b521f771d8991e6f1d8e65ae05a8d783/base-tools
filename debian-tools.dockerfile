@@ -15,10 +15,10 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
 # tools for development
     android-sdk sdkmanager default-jdk maven gradle \
     lighttpd \
-    python3
+    python3 pip
 
 # install uv
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+RUN pip install --break-system-packages uv
 
 # set up rust
 RUN rustup default stable
