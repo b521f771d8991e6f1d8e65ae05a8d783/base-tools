@@ -1,4 +1,4 @@
-# provides a build environent for Debian Linux (supports a Darwin-like toolchain for Objective C/++, Rust, Swift and Typescript. Has support for cross-compiling Rust to wasm using wasm-pack)
+# provides a build environent for Debian Linux (has cross-compiling support for Android)
 FROM docker.io/debian:stable
 
 ENV PATH="$PATH:/root/.nix-profile/bin:/root/.cargo/bin:/usr/local/bin/" \
