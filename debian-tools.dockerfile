@@ -15,7 +15,8 @@ RUN apt update && apt upgrade -y && apt install -y nix nano curl wget gpg rpm zs
 # tools for development
     android-sdk sdkmanager default-jdk maven gradle \
     lighttpd \
-    python3 pip
+    python3 pip \
+    podman podman-docker
 
 # install uv
 RUN pip install --break-system-packages uv
