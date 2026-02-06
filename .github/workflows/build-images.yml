@@ -16,7 +16,7 @@ jobs:
       matrix:
         image_name: 
           - debian-tools-2
-          - debian-tools-2-slim
+          - debian-tools-2-runtime
           #- debian-tools-runtime
           #- wine-tools
           # legacy images
