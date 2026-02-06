@@ -4,4 +4,5 @@ RUN apt update && apt upgrade -y && apt install -y --no-install-recommends curl 
     build-essential make cmake ninja-build libgnustep-base-dev clang clang-format clang-tidy clangd clang-tools lldb \
     bacon cargo rustc rustfmt rust-doc \
     swiftlang swiftlang-dev swiftlang-doc \
-    npm # zip unzip tar --> needed for vcpkg bootstrap 
+    npm \
+    gradle android-sdk default-jdk
