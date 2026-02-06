@@ -15,9 +15,9 @@ jobs:
     strategy:
       matrix:
         image_name: 
-          - debian-tools
-          - debian-tools-runtime
-          - wine-tools
+          - debian-tools-2
+          #- debian-tools-runtime
+          #- wine-tools
           # legacy images
           #- trixie-tools
           #- trixie-tools-runtime
