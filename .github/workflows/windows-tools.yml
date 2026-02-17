@@ -14,4 +14,5 @@ jobs:
       - name: Build and push
         shell: powershell
         run: |
-          docker build . -f ../../windows-tools.dockerfile
+          dir
+          docker build . -f windows-tools.dockerfile
