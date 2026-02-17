@@ -2,6 +2,7 @@ name: Build Windows Image
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   build-image:
