@@ -14,6 +14,9 @@ RUN msiexec /i C:\tmp\cmake-installer.msi /qn /norestart /L*v C:\tmp\cmake-insta
 ADD https://github.com/microsoft/vcpkg/archive/refs/tags/2026.01.16.zip vcpkg.zip
 RUN tar -xf vcpkg.zip; cd vcpkg-2026.01.16; .\bootstrap-vcpkg.bat -disableMetrics; .\vcpkg install sqlite3 abseil boost vcpkg-tool-ninja
 
+ADD https://github.com/gnustep/tools-windows-msvc/releases/download/latest/GNUstep-Windows-MSVC-x64-Release.zip GNUStep.zip
+RUN tar -xf GNUStep.zip; move GNUStep C:\
+
 RUN npm install -g wasm-pack
 
 WORKDIR /workspace
