@@ -1,4 +1,4 @@
-name: Deploy_GHRunner_Windows_ACI
+name: Build Windows Image
 
 on:
   workflow_dispatch:
