@@ -1,0 +1,21 @@
+name: Deploy_GHRunner_Windows_ACI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-gh-runner-aci:
+    runs-on: windows-latest
+    steps:
+      # checkout the repo
+      - name: "Checkout GitHub Action"
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          file: windows-tools.dockerfile
