@@ -11,6 +11,6 @@ RUN groupadd --gid 1000 vscode \
     && echo "vscode ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/vscode \
     && chmod 0440 /etc/sudoers.d/vscode
 
-mkdir -p ~/.config/nix && \
+RUN mkdir -p ~/.config/nix && \
   echo 'extra-experimental-features = flakes nix-command' > ~/.config/nix/nix.conf && \
   git config --global --add safe.directory /workspace
