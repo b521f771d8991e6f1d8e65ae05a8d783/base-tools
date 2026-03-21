@@ -14,3 +14,5 @@ RUN groupadd --gid 1000 vscode \
 RUN mkdir -p ~/.config/nix && \
   echo 'extra-experimental-features = flakes nix-command' > ~/.config/nix/nix.conf && \
   git config --global --add safe.directory /workspace
+
+VOLUME /nix
