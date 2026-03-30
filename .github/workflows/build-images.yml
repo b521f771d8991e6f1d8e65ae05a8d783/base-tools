@@ -11,10 +11,18 @@ jobs:
     permissions:
       packages: write
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image_name:
+          - debian-tools-2
+          - debian-tools-2-runtime
+          - trixie-tools
+          - trixie-tools-runtime
     steps:
     - uses: actions/delete-package-versions@v5
+      continue-on-error: true
       with:
-        package-name: ${{ github.event.repository.name }}
+        package-name: ${{ matrix.image_name }}
         package-type: container
         min-versions-to-keep: 1
         delete-only-untagged-versions: false
