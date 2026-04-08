@@ -14,6 +14,8 @@ jobs:
     strategy:
       matrix:
         image_name:
+          - debian-tools
+          - debian-tools-runtime
           - debian-tools-2
           - debian-tools-2-runtime
           - trixie-tools
